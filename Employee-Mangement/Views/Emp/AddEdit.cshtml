@@ -1,0 +1,80 @@
+﻿@model Employee_Mangement.Models.EmployeeModel
+
+@{
+    ViewData["Title"] = "AddEditEmployee";
+}
+
+<h1>AddEditEmployee</h1>
+
+<h4>EmployeeModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddEdit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+               
+                <input asp-for="employeeid" class="form-control" type="hidden" />
+               
+            </div>
+            <div class="form-group">
+                <label asp-for="employeename" class="control-label"></label>
+                <input asp-for="employeename" class="form-control" />
+                <span asp-validation-for="employeename" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="designationid" class="control-label"></label>
+                <select class="form-control" asp-for="designationid" asp-items="ViewBag.list">
+                    <option value="">Choose Designation</option>
+                    <option value="" id="add">Add New Designation</option>
+
+                </select>
+
+                <span asp-validation-for="designationid" class="text-danger"></span>
+                <form asp-action="">
+                    <div style="display:none;" id="form1">
+                        <label asp-for="salary" class="control-label"></label>
+                        <input asp-for="des.designationname" class="form-control" />
+                        <span asp-validation-for="salary" class="text-danger"></span>
+                    </div>
+
+                </form>
+            </div>
+            <div class="form-group">
+                <label asp-for="salary" class="control-label"></label>
+                <input asp-for="salary" class="form-control" />
+                <span asp-validation-for="salary" class="text-danger"></span>
+            </div>
+           @* <div class="form-group">
+                <label asp-for="flagdeleted" class="control-label"></label>
+                <input asp-for="flagdeleted" class="form-control" />
+                <span asp-validation-for="flagdeleted" class="text-danger"></span>
+            </div>
+*@            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#add').click(function () {
+            console.log("add");
+            $('#form1').show();
+        });
+    });
+    
+
+        
+
+</script>
